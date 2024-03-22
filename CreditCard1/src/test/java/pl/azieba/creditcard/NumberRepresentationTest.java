@@ -1,4 +1,4 @@
-package pl.azieba;
+package pl.azieba.creditcard;
 
 import org.junit.jupiter.api.Test;
 
