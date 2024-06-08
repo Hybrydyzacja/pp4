@@ -1,25 +1,35 @@
 package pl.azieba.ecommerce;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class ProductCatalog {
 
+    private final ProductStorage productStorage;
+
+    public ProductCatalog(ProductStorage productStorage) {
+        this.productStorage = productStorage;
+    }
+
     public List<Product> allProducts() {
-        return new ArrayList<>();
+        return productStorage.allProducts();
     }
 
-    public String createProduct(String s) {
-        return s;
+    public String addProduct(String name, String description) {
+        UUID id = UUID.randomUUID();
+        Product newProduct = new Product(id, name, description);
+        productStorage.add(newProduct);
+
+        return newProduct.getId();
     }
 
-    public Product getProductDetails(String id) {
-        return null;
+    public Product getProductBy(String id) {
+        return productStorage.getProductBy(id);
     }
 
-
-    public void changePrice(String id, BigDecimal bigDecimal) {
-        return;
+    public void changePrice(String id, BigDecimal newPrice) {
+        Product loaded = productStorage.getProductBy(id);
+        loaded.changePrice(newPrice);
     }
 }

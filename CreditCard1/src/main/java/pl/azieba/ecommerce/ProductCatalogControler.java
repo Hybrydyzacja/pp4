@@ -10,28 +10,22 @@ import java.util.List;
 @RestController
 public class ProductCatalogControler {
 
-    ProductCatalog productCatalog;
+    private final ProductCatalog productCatalog;
 
     public ProductCatalogControler(ProductCatalog productCatalog) {
+
         this.productCatalog = productCatalog;
     }
 
-    @GetMapping("/api/hello")
-    List<Product> getProducts() {
-        return productCatalog.findAllProducts();
-    }
+//    @GetMapping("/api/hello")
+//    List<Product> getProducts() {
+//        return productCatalog.findAllProducts();
+//    }
 
-    @GetMapping("/api/hello")
-    String helloWorld() {
-        return "Hello World";
-    }
+    @GetMapping("/api/products")
+    List<Product> getAllProducts() {
+        return productCatalog.allProducts();
 
-    @GetMapping("/api/hello")
-    List<String> getProducts() {
-        return Arrays.asList(
-                "Kuba",
-                "Michal",
-                "Aga", "Areczek");
     }
 
 }
